@@ -625,13 +625,13 @@ RSpec.describe 'デフォルトで実装されているタスク管理機能が�
           it "タイトルが未入力の場合、「タイトルを入力してください」というバリデーションメッセージが表示させる" do
             visit new_task_path
             fill_in 'タイトル', with: ''
-            fill_in '内容', with: ''
+            fill_in '内容', with: 'sample content'
             click_button '登録する'
             expect(page).to have_content "タイトルを入力してください"
           end
           it "内容が未入力の場合、「内容を入力してください」というバリデーションメッセージが表示させる" do
             visit new_task_path
-            fill_in 'タイトル', with: ''
+            fill_in 'タイトル', with: 'sample title'
             fill_in '内容', with: ''
             click_button '登録する'
             expect(page).to have_content "内容を入力してください"
@@ -649,13 +649,13 @@ RSpec.describe 'デフォルトで実装されているタスク管理機能が�
           it "タイトルが未入力の場合、「タイトルを入力してください」というバリデーションメッセージが表示させる" do
             visit edit_task_path(task)
             fill_in 'タイトル', with: ''
-            fill_in '内容', with: ''
+            fill_in '内容', with: task.content
             click_button '更新する'
             expect(page).to have_content "タイトルを入力してください"
           end
           it "内容が未入力の場合、「内容を入力してください」というバリデーションメッセージが表示させる" do
             visit edit_task_path(task)
-            fill_in 'タイトル', with: ''
+            fill_in 'タイトル', with: task.title
             fill_in '内容', with: ''
             click_button '更新する'
             expect(page).to have_content "内容を入力してください"
